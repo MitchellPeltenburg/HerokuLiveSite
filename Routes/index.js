@@ -29,6 +29,9 @@ router.get('/login', function (req, res, next) {
 router.get('/register', function (req, res, next) {
     res.render('index', { title: 'Register', page: 'register', displayName: '' });
 });
+router.get('/error', function (req, res, next) {
+    res.render('index', { title: 'Error', page: 'error', displayName: '' });
+});
 router.get('/contact-list', function (req, res, next) {
     res.render('index', { title: 'Contact List', page: 'contact-list', displayName: '' });
 });
