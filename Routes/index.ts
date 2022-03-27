@@ -49,6 +49,12 @@ router.get('/register', function(req, res, next)
   res.render('index', { title: 'Register', page: 'register', displayName: '' });
 });
 
+/* GET register page. */
+router.get('/error', function(req, res, next) 
+{
+  res.render('index', { title: 'Error', page: 'error', displayName: '' });
+});
+
 /* Temporary Routes - Contact-List Related */
 
 /* GET contact-list page. */
