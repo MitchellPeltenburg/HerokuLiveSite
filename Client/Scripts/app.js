@@ -89,7 +89,7 @@
         });
     }
     function DisplayContactListPage() {
-        console.log("Contact-List page");
+        console.log("Contact-list page");
         $("a.delete").on("click", function (event) {
             if (!confirm("Are you sure?")) {
                 event.preventDefault();
@@ -98,7 +98,7 @@
         });
     }
     function DisplayEditPage() {
-        console.log("Edit Page");
+        console.log("Add/Edit Page");
         ContactFormValidation();
     }
     function CheckLogin() {
@@ -113,36 +113,6 @@
     }
     function DisplayLoginPage() {
         console.log("Login Page");
-        let messageArea = $("#messageArea");
-        messageArea.hide();
-        $("#loginButton").on("click", function () {
-            let success = false;
-            let newUser = new core.User();
-            $.get("./Data/users.json", function (data) {
-                for (const user of data.users) {
-                    let username = document.forms[0].username.value;
-                    let password = document.forms[0].password.value;
-                    if (username == user.Username && password == user.Password) {
-                        newUser.fromJSON(user);
-                        success = true;
-                        break;
-                    }
-                }
-                if (success) {
-                    sessionStorage.setItem("user", newUser.serialize());
-                    messageArea.removeAttr("class").hide();
-                    location.href = "/contact-list";
-                }
-                else {
-                    $("#username").trigger("focus").trigger("select");
-                    messageArea.addClass("alert alert-danger").text("Error: Invalid Login Information").show();
-                }
-            });
-        });
-        $("#cancelButton").on("click", function () {
-            document.forms[0].reset();
-            location.href = "/home";
-        });
     }
     function DisplayRegisterPage() {
         console.log("Register Page");
@@ -160,6 +130,12 @@
             case "about":
                 DisplayAboutPage();
                 break;
+            case "edit":
+                DisplayEditPage();
+                break;
+            case "add":
+                DisplayEditPage();
+                break;
             case "products":
                 DisplayProductsPage();
                 break;
@@ -171,12 +147,6 @@
                 break;
             case "contact-list":
                 DisplayContactListPage();
-                break;
-            case "edit":
-                DisplayEditPage();
-                break;
-            case "add":
-                DisplayEditPage();
                 break;
             case "login":
                 DisplayLoginPage();
